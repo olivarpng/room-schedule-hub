@@ -2,9 +2,9 @@ import { Check, Users, Wrench } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Room } from "./data";
+import type { Sala } from "./data";
 
-function statusColor(status: Room["status"]) {
+function statusColor(status: Sala["status"]) {
   switch (status) {
     case "disponível":
       return "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 border-transparent";
@@ -17,7 +17,7 @@ function statusColor(status: Room["status"]) {
   }
 }
 
-function statusIcon(status: Room["status"]) {
+function statusIcon(status: Sala["status"]) {
   switch (status) {
     case "disponível":
       return <Check className="h-3 w-3" />;
@@ -30,43 +30,45 @@ function statusIcon(status: Room["status"]) {
   }
 }
 
-export function RoomsGrid({ rooms }: { rooms: Room[] }) {
+export function RoomsGrid({ salas }: { salas: Sala[] }) {
   return (
     <Card className="border-border bg-card shadow-sm">
       <CardHeader className="pb-4">
-        <CardTitle className="text-lg font-semibold text-foreground">Salas</CardTitle>
-        <p className="text-sm text-muted-foreground">Status das salas de reunião</p>
+        <CardTitle className="text-lg font-semibold text-foreground">Salas e laboratórios</CardTitle>
+        <p className="text-sm text-muted-foreground">Código, localização, capacidade e recursos disponíveis</p>
       </CardHeader>
       <CardContent>
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-          {rooms.map((room) => (
+          {salas.map((sala) => (
             <div
-              key={room.id}
+              key={sala.id}
               className="group rounded-xl border border-border bg-background p-4 transition-colors hover:border-primary/30 hover:bg-accent/30"
             >
-              <div className="flex items-start justify-between">
+              <div className="flex items-start justify-between gap-2">
                 <div>
-                  <h3 className="font-semibold text-foreground">{room.name}</h3>
-                  <p className="text-xs text-muted-foreground">{room.location}</p>
+                  <span className="text-[11px] font-semibold uppercase tracking-wide text-primary">{sala.codigo}</span>
+                  <h3 className="font-semibold text-foreground">{sala.nome}</h3>
+                  <p className="text-xs text-muted-foreground">{sala.localizacao}</p>
                 </div>
-                <Badge variant="outline" className={`flex items-center gap-1 capitalize ${statusColor(room.status)}`}>
-                  {statusIcon(room.status)}
-                  {room.status}
+                <Badge variant="outline" className={`flex shrink-0 items-center gap-1 capitalize ${statusColor(sala.status)}`}>
+                  {statusIcon(sala.status)}
+                  {sala.status}
                 </Badge>
               </div>
               <div className="mt-3 flex items-center gap-4 text-xs text-muted-foreground">
                 <span className="flex items-center gap-1">
                   <Users className="h-3.5 w-3.5" />
-                  {room.capacity} pessoas
+                  Capacidade: {sala.capacidade}
                 </span>
               </div>
               <div className="mt-3 flex flex-wrap gap-1.5">
-                {room.features.map((feature) => (
+                {sala.recursos.map((recurso) => (
                   <span
-                    key={feature}
+                    key={recurso.id}
+                    title={recurso.descricao}
                     className="rounded-md bg-secondary px-2 py-0.5 text-[10px] font-medium text-secondary-foreground"
                   >
-                    {feature}
+                    {recurso.nome}
                   </span>
                 ))}
               </div>

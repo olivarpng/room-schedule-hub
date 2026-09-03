@@ -1,19 +1,19 @@
-import { ArrowDownRight, ArrowUpRight, CalendarCheck, DoorOpen, Minus, Users } from "lucide-react";
+import { AlertTriangle, ArrowDownRight, ArrowUpRight, CalendarCheck, DoorOpen, Minus, PieChart } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
-import type { Stat } from "./data";
+import type { Indicador } from "./data";
 
 const icons: Record<string, React.ComponentType<{ className?: string }>> = {
-  "Salas cadastradas": DoorOpen,
-  "Agendamentos hoje": CalendarCheck,
-  "Salas disponíveis": DoorOpen,
-  "Taxa de ocupação": Users,
+  "Salas e laboratórios": DoorOpen,
+  "Agendamentos de hoje": CalendarCheck,
+  "Conflitos de horário": AlertTriangle,
+  "Taxa de ocupação": PieChart,
 };
 
-export function StatsCards({ stats }: { stats: Stat[] }) {
+export function StatsCards({ indicadores }: { indicadores: Indicador[] }) {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {stats.map((stat) => {
+      {indicadores.map((stat) => {
         const Icon = icons[stat.label] ?? DoorOpen;
         return (
           <Card key={stat.label} className="border-border bg-card shadow-sm">

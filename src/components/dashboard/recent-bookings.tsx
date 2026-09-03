@@ -1,5 +1,3 @@
-import { format } from "date-fns";
-import { ptBR } from "date-fns/locale";
 import { MoreHorizontal } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -13,9 +11,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import type { Booking } from "./data";
+import type { Agendamento } from "./data";
 
-function statusColor(status: Booking["status"]) {
+function statusColor(status: Agendamento["status"]) {
   switch (status) {
     case "confirmado":
       return "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 border-transparent";
@@ -28,13 +26,15 @@ function statusColor(status: Booking["status"]) {
   }
 }
 
-export function RecentBookings({ bookings }: { bookings: Booking[] }) {
+export function RecentBookings({ agendamentos }: { agendamentos: Agendamento[] }) {
   return (
     <Card className="border-border bg-card shadow-sm">
       <CardHeader className="flex flex-row items-center justify-between pb-4">
         <div>
-          <CardTitle className="text-lg font-semibold text-foreground">Agendamentos recentes</CardTitle>
-          <p className="text-sm text-muted-foreground">{format(new Date(), "EEEE, dd 'de' MMMM", { locale: ptBR })}</p>
+          <CardTitle className="text-lg font-semibold text-foreground">Agendamentos do dia</CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Disciplina, turma, sala e professor responsável — quinta-feira, 03 de setembro
+          </p>
         </div>
         <Button variant="outline" size="sm" className="hidden sm:flex">
           Ver todos
@@ -45,32 +45,39 @@ export function RecentBookings({ bookings }: { bookings: Booking[] }) {
           <Table>
             <TableHeader>
               <TableRow className="border-border hover:bg-transparent">
-                <TableHead className="text-muted-foreground">Evento</TableHead>
+                <TableHead className="text-muted-foreground">Disciplina / Turma</TableHead>
                 <TableHead className="text-muted-foreground">Sala</TableHead>
                 <TableHead className="text-muted-foreground">Horário</TableHead>
-                <TableHead className="text-muted-foreground">Participantes</TableHead>
+                <TableHead className="text-muted-foreground">Professor responsável</TableHead>
+                <TableHead className="text-muted-foreground">Solicitante</TableHead>
                 <TableHead className="text-muted-foreground">Status</TableHead>
                 <TableHead className="w-10" />
               </TableRow>
             </TableHeader>
             <TableBody>
-              {bookings.map((booking) => (
-                <TableRow key={booking.id} className="border-border">
+              {agendamentos.map((ag) => (
+                <TableRow key={ag.id} className="border-border">
                   <TableCell>
-                    <div className="font-medium text-foreground">{booking.title}</div>
-                    <div className="text-xs text-muted-foreground">{booking.organizer}</div>
+                    <div className="font-medium text-foreground">{ag.disciplina}</div>
+                    <div className="text-xs text-muted-foreground">
+                      {ag.disciplinaCodigo} · {ag.turma}
+                    </div>
                   </TableCell>
                   <TableCell>
-                    <div className="font-medium text-foreground">{booking.roomName}</div>
-                    <div className="text-xs text-muted-foreground">{booking.roomLocation}</div>
+                    <div className="font-medium text-foreground">{ag.salaCodigo}</div>
+                    <div className="text-xs text-muted-foreground">{ag.salaLocalizacao}</div>
                   </TableCell>
-                  <TableCell className="text-foreground">
-                    {booking.startTime} — {booking.endTime}
+                  <TableCell className="whitespace-nowrap text-foreground">
+                    {ag.horaInicio} — {ag.horaFim}
                   </TableCell>
-                  <TableCell className="text-foreground">{booking.attendees}</TableCell>
+                  <TableCell className="text-foreground">{ag.professorResponsavel}</TableCell>
                   <TableCell>
-                    <Badge variant="outline" className={`capitalize ${statusColor(booking.status)}`}>
-                      {booking.status}
+                    <div className="text-foreground">{ag.solicitanteNome}</div>
+                    <div className="text-xs text-muted-foreground">{ag.solicitantePerfil}</div>
+                  </TableCell>
+                  <TableCell>
+                    <Badge variant="outline" className={`capitalize ${statusColor(ag.status)}`}>
+                      {ag.status}
                     </Badge>
                   </TableCell>
                   <TableCell>
