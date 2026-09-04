@@ -22,12 +22,14 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 const navItems = [
   { icon: Home, label: "Dashboard", href: "/", active: true },
   { icon: CalendarDays, label: "Agendamentos", href: "/agendamentos" },
-  { icon: MapPin, label: "Salas", href: "/salas" },
-  { icon: Users, label: "Usuários", href: "/usuarios" },
-  { icon: Clock, label: "Histórico", href: "/historico" },
-  { icon: MessageSquare, label: "Mensagens", href: "/mensagens" },
+  { icon: MapPin, label: "Salas e laboratórios", href: "/salas" },
+  { icon: BookOpen, label: "Disciplinas e turmas", href: "/disciplinas" },
+  { icon: Users, label: "Usuários e acessos", href: "/usuarios" },
+  { icon: FileBarChart, label: "Relatórios", href: "/relatorios" },
+  { icon: MessageSquare, label: "Notificações", href: "/notificacoes" },
   { icon: Settings, label: "Configurações", href: "/configuracoes" },
 ];
+
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
