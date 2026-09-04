@@ -1,9 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import {
+  BookOpen,
   CalendarDays,
-  Clock,
+  FileBarChart,
+  GraduationCap,
   Home,
-  LayoutGrid,
   LogOut,
   MapPin,
   Menu,
@@ -12,6 +13,7 @@ import {
   Settings,
   Users,
 } from "lucide-react";
+
 import { useState } from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -22,12 +24,14 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 const navItems = [
   { icon: Home, label: "Dashboard", href: "/", active: true },
   { icon: CalendarDays, label: "Agendamentos", href: "/agendamentos" },
-  { icon: MapPin, label: "Salas", href: "/salas" },
-  { icon: Users, label: "Usuários", href: "/usuarios" },
-  { icon: Clock, label: "Histórico", href: "/historico" },
-  { icon: MessageSquare, label: "Mensagens", href: "/mensagens" },
+  { icon: MapPin, label: "Salas e laboratórios", href: "/salas" },
+  { icon: BookOpen, label: "Disciplinas e turmas", href: "/disciplinas" },
+  { icon: Users, label: "Usuários e acessos", href: "/usuarios" },
+  { icon: FileBarChart, label: "Relatórios", href: "/relatorios" },
+  { icon: MessageSquare, label: "Notificações", href: "/notificacoes" },
   { icon: Settings, label: "Configurações", href: "/configuracoes" },
 ];
+
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
@@ -38,9 +42,9 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
       <aside className="hidden w-64 flex-col border-r border-border bg-card lg:flex">
         <div className="flex h-16 items-center gap-2 border-b border-border px-6">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <LayoutGrid className="h-5 w-5" />
+            <GraduationCap className="h-5 w-5" />
           </div>
-          <span className="text-lg font-semibold tracking-tight text-foreground">RoomBook</span>
+          <span className="text-lg font-semibold tracking-tight text-foreground">SalaFácil</span>
         </div>
 
         <nav className="flex flex-1 flex-col gap-1 p-4">
@@ -67,8 +71,8 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
               <AvatarFallback className="bg-primary text-primary-foreground text-xs">AD</AvatarFallback>
             </Avatar>
             <div className="flex min-w-0 flex-1 flex-col">
-              <span className="truncate text-sm font-medium text-foreground">Admin RoomBook</span>
-              <span className="truncate text-xs text-muted-foreground">admin@roombook.co</span>
+              <span className="truncate text-sm font-medium text-foreground">Marcos Andrade</span>
+              <span className="truncate text-xs text-muted-foreground">Administrador</span>
             </div>
             <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground">
               <LogOut className="h-4 w-4" />
@@ -90,9 +94,9 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
             <SheetContent side="left" className="w-64 p-0">
               <div className="flex h-16 items-center gap-2 border-b border-border px-6">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                  <LayoutGrid className="h-5 w-5" />
+                  <GraduationCap className="h-5 w-5" />
                 </div>
-                <span className="text-lg font-semibold tracking-tight text-foreground">RoomBook</span>
+                <span className="text-lg font-semibold tracking-tight text-foreground">SalaFácil</span>
               </div>
               <nav className="flex flex-col gap-1 p-4">
                 {navItems.map((item) => (
@@ -118,7 +122,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               type="search"
-              placeholder="Buscar salas, agendamentos ou pessoas..."
+              placeholder="Buscar salas, disciplinas, turmas ou professores..."
               className="pl-9 bg-background border-border text-sm"
             />
           </div>

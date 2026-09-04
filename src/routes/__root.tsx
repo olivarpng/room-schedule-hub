@@ -77,14 +77,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "RoomBook — Agendamento de Salas" },
-      { name: "description", content: "Sistema de agendamento de salas para empresas." },
-      { name: "author", content: "RoomBook" },
-      { property: "og:title", content: "RoomBook — Agendamento de Salas" },
-      { property: "og:description", content: "Sistema de agendamento de salas para empresas." },
+      { title: "SalaFácil — Agendamento de Salas de Aula" },
+      { name: "description", content: "Sistema de gestão e controle de agendamento de salas de aula e laboratórios." },
+      { name: "author", content: "SalaFácil" },
+      { property: "og:title", content: "SalaFácil — Agendamento de Salas de Aula" },
+      { property: "og:description", content: "Sistema de gestão e controle de agendamento de salas de aula e laboratórios." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@RoomBook" },
+      { name: "twitter:site", content: "@salafacil" },
     ],
     links: [
       {
