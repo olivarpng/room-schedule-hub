@@ -1,9 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import {
+  BookOpen,
   CalendarDays,
-  Clock,
+  FileBarChart,
+  GraduationCap,
   Home,
-  LayoutGrid,
   LogOut,
   MapPin,
   Menu,
@@ -12,6 +13,7 @@ import {
   Settings,
   Users,
 } from "lucide-react";
+
 import { useState } from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
