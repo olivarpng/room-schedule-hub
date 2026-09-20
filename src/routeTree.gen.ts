@@ -12,9 +12,12 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AgendamentosRouteImport } from './routes/agendamentos'
 import { Route as CadastroRouteImport } from './routes/cadastro'
+import { Route as ConfiguracoesRouteImport } from './routes/configuracoes'
+import { Route as DisciplinasRouteImport } from './routes/disciplinas'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as NotificacoesRouteImport } from './routes/notificacoes'
 import { Route as NovaSenhaRouteImport } from './routes/nova-senha'
+import { Route as RelatoriosRouteImport } from './routes/relatorios'
 import { Route as SalasRouteImport } from './routes/salas'
 import { Route as UsuariosRouteImport } from './routes/usuarios'
 
@@ -33,6 +36,16 @@ const CadastroRoute = CadastroRouteImport.update({
   path: '/cadastro',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConfiguracoesRoute = ConfiguracoesRouteImport.update({
+  id: '/configuracoes',
+  path: '/configuracoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DisciplinasRoute = DisciplinasRouteImport.update({
+  id: '/disciplinas',
+  path: '/disciplinas',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -46,6 +59,11 @@ const NotificacoesRoute = NotificacoesRouteImport.update({
 const NovaSenhaRoute = NovaSenhaRouteImport.update({
   id: '/nova-senha',
   path: '/nova-senha',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RelatoriosRoute = RelatoriosRouteImport.update({
+  id: '/relatorios',
+  path: '/relatorios',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SalasRoute = SalasRouteImport.update({
@@ -63,9 +81,12 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/agendamentos': typeof AgendamentosRoute
   '/cadastro': typeof CadastroRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/disciplinas': typeof DisciplinasRoute
   '/login': typeof LoginRoute
   '/notificacoes': typeof NotificacoesRoute
   '/nova-senha': typeof NovaSenhaRoute
+  '/relatorios': typeof RelatoriosRoute
   '/salas': typeof SalasRoute
   '/usuarios': typeof UsuariosRoute
 }
@@ -73,9 +94,12 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/agendamentos': typeof AgendamentosRoute
   '/cadastro': typeof CadastroRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/disciplinas': typeof DisciplinasRoute
   '/login': typeof LoginRoute
   '/notificacoes': typeof NotificacoesRoute
   '/nova-senha': typeof NovaSenhaRoute
+  '/relatorios': typeof RelatoriosRoute
   '/salas': typeof SalasRoute
   '/usuarios': typeof UsuariosRoute
 }
@@ -84,9 +108,12 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/agendamentos': typeof AgendamentosRoute
   '/cadastro': typeof CadastroRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/disciplinas': typeof DisciplinasRoute
   '/login': typeof LoginRoute
   '/notificacoes': typeof NotificacoesRoute
   '/nova-senha': typeof NovaSenhaRoute
+  '/relatorios': typeof RelatoriosRoute
   '/salas': typeof SalasRoute
   '/usuarios': typeof UsuariosRoute
 }
@@ -96,9 +123,12 @@ export interface FileRouteTypes {
     | '/'
     | '/agendamentos'
     | '/cadastro'
+    | '/configuracoes'
+    | '/disciplinas'
     | '/login'
     | '/notificacoes'
     | '/nova-senha'
+    | '/relatorios'
     | '/salas'
     | '/usuarios'
   fileRoutesByTo: FileRoutesByTo
@@ -106,9 +136,12 @@ export interface FileRouteTypes {
     | '/'
     | '/agendamentos'
     | '/cadastro'
+    | '/configuracoes'
+    | '/disciplinas'
     | '/login'
     | '/notificacoes'
     | '/nova-senha'
+    | '/relatorios'
     | '/salas'
     | '/usuarios'
   id:
@@ -116,9 +149,12 @@ export interface FileRouteTypes {
     | '/'
     | '/agendamentos'
     | '/cadastro'
+    | '/configuracoes'
+    | '/disciplinas'
     | '/login'
     | '/notificacoes'
     | '/nova-senha'
+    | '/relatorios'
     | '/salas'
     | '/usuarios'
   fileRoutesById: FileRoutesById
@@ -127,9 +163,12 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AgendamentosRoute: typeof AgendamentosRoute
   CadastroRoute: typeof CadastroRoute
+  ConfiguracoesRoute: typeof ConfiguracoesRoute
+  DisciplinasRoute: typeof DisciplinasRoute
   LoginRoute: typeof LoginRoute
   NotificacoesRoute: typeof NotificacoesRoute
   NovaSenhaRoute: typeof NovaSenhaRoute
+  RelatoriosRoute: typeof RelatoriosRoute
   SalasRoute: typeof SalasRoute
   UsuariosRoute: typeof UsuariosRoute
 }
@@ -157,6 +196,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CadastroRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/configuracoes': {
+      id: '/configuracoes'
+      path: '/configuracoes'
+      fullPath: '/configuracoes'
+      preLoaderRoute: typeof ConfiguracoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disciplinas': {
+      id: '/disciplinas'
+      path: '/disciplinas'
+      fullPath: '/disciplinas'
+      preLoaderRoute: typeof DisciplinasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -176,6 +229,13 @@ declare module '@tanstack/react-router' {
       path: '/nova-senha'
       fullPath: '/nova-senha'
       preLoaderRoute: typeof NovaSenhaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/relatorios': {
+      id: '/relatorios'
+      path: '/relatorios'
+      fullPath: '/relatorios'
+      preLoaderRoute: typeof RelatoriosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/salas': {
@@ -199,9 +259,12 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AgendamentosRoute: AgendamentosRoute,
   CadastroRoute: CadastroRoute,
+  ConfiguracoesRoute: ConfiguracoesRoute,
+  DisciplinasRoute: DisciplinasRoute,
   LoginRoute: LoginRoute,
   NotificacoesRoute: NotificacoesRoute,
   NovaSenhaRoute: NovaSenhaRoute,
+  RelatoriosRoute: RelatoriosRoute,
   SalasRoute: SalasRoute,
   UsuariosRoute: UsuariosRoute,
 }
