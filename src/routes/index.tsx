@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { CalendarPanel } from "@/components/dashboard/calendar-panel";
 import { DashboardLayout } from "@/components/dashboard/layout";
 import { NotificationsPanel } from "@/components/dashboard/notifications-panel";
 import { RecentBookings } from "@/components/dashboard/recent-bookings";
@@ -55,6 +56,8 @@ function DashboardPage() {
         </div>
 
         <StatsCards indicadores={indicadores} />
+
+        <CalendarPanel agendamentos={agendamentos} />
 
         <div className="grid gap-6 xl:grid-cols-3">
           <div className="space-y-6 xl:col-span-2">
