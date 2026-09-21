@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import {
   BookOpen,
   CalendarDays,
@@ -22,7 +22,7 @@ import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navItems = [
-  { icon: Home, label: "Dashboard", href: "/", active: true },
+  { icon: Home, label: "Dashboard", href: "/" },
   { icon: CalendarDays, label: "Agendamentos", href: "/agendamentos" },
   { icon: MapPin, label: "Salas e laboratórios", href: "/salas" },
   { icon: BookOpen, label: "Disciplinas e turmas", href: "/disciplinas" },
@@ -35,6 +35,7 @@ const navItems = [
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
     <div className="flex min-h-screen w-full bg-background">
